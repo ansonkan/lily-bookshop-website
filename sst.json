@@ -1,5 +1,5 @@
 {
   "name": "lily-bookshop-website",
-  "region": "us-east-1",
+  "region": "ap-east-1",
   "main": "stacks/index.ts"
 }

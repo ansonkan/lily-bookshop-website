@@ -4,7 +4,6 @@ import { connect } from '../utils'
 
 export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false
-
   if (!event.body) {
     return {
       statusCode: 400,

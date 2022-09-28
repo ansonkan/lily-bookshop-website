@@ -1,10 +1,9 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import { ObjectId } from 'mongodb'
 
 import { connect } from '../utils'
 
 export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
-  context.callbackWaitsForEmptyEventLoop = false
-
   const id = event.pathParameters?.id
 
   if (!event.body || !id) {
@@ -17,7 +16,9 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
 
   const db = await connect('bookshop')
 
-  const result = await db.collection('books').updateOne({ _id: id }, data)
+  const result = await db
+    .collection('books')
+    .updateOne({ _id: new ObjectId(id) }, { $set: data })
 
   return {
     statusCode: 200,

@@ -1,4 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import { ObjectId } from 'mongodb'
 
 import { connect } from '../utils'
 
@@ -15,7 +16,9 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
 
   const db = await connect('bookshop')
 
-  const result = await db.collection('books').deleteOne({ _id: id })
+  const result = await db
+    .collection('books')
+    .deleteOne({ _id: new ObjectId(id) })
 
   return {
     statusCode: 200,

@@ -15,7 +15,25 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
 
   const db = await connect('bookshop')
 
-  const books = await db.collection('books').find({}).toArray()
+  const books = await db
+    .collection('books')
+    .aggregate([
+      {
+        $search: {
+          index: 'default',
+          text: {
+            query,
+            path: {
+              wildcard: '*',
+            },
+          },
+        },
+      },
+      {
+        $limit: 25,
+      },
+    ])
+    .toArray()
 
   return {
     statusCode: 200,

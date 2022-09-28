@@ -10,7 +10,12 @@ export function MyStack({ stack }: StackContext) {
       },
     },
     routes: {
-      'GET /': 'functions/lambda.handler',
+      'GET    /books': 'books/list.handler',
+      'POST   /books': 'books/create.handler',
+      'GET    /books/search': 'books/search.handler',
+      'GET    /books/{id}': 'books/get.handler',
+      'PUT    /books/{id}': 'books/update.handler',
+      'DELETE /books/{id}': 'books/delete.handler',
     },
   })
 

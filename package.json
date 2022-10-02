@@ -23,6 +23,7 @@
   },
   "workspaces": [
     "services",
-    "scripts"
+    "scripts",
+    "frontend"
   ]
 }

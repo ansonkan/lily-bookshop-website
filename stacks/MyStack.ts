@@ -1,4 +1,4 @@
-import { StackContext, Api } from '@serverless-stack/resources'
+import { StackContext, Api, NextjsSite } from '@serverless-stack/resources'
 
 export function MyStack({ stack }: StackContext) {
   const api = new Api(stack, 'api', {
@@ -19,7 +19,15 @@ export function MyStack({ stack }: StackContext) {
     },
   })
 
+  const site = new NextjsSite(stack, 'Site', {
+    path: 'frontend',
+    environment: {
+      API_URL: api.url,
+    },
+  })
+
   stack.addOutputs({
     ApiEndpoint: api.url,
+    SiteUrl: site.url,
   })
 }

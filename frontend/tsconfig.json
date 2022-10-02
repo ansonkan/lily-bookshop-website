@@ -21,9 +21,11 @@
       "@components/*": ["components/*"],
 
       "@public": ["public"],
-      "@public/*": ["public/*"]
+      "@public/*": ["public/*"],
+
+      "@styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"],
   "exclude": ["node_modules"]
 }

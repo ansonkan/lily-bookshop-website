@@ -1,7 +1,5 @@
 import type { NextPage, GetServerSideProps } from 'next'
 
-import { useRouter } from 'next/router'
-
 interface SearchPageProps {
   books: string[]
 }

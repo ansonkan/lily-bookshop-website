@@ -3,7 +3,7 @@ import ChevronLeftRounded from '~icons/material-symbols/chevron-left-rounded.jsx
 
 export const CustomDisclosure = () => {
   return (
-    <div className="w-full px-4 pt-16">
+    <div w="full">
       <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
         <Disclosure>
           {({ open }) => (

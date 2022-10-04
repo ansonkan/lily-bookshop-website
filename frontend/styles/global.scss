@@ -1,0 +1,13 @@
+a,
+button,
+.focusable {
+  @apply rounded focus:(outline-none) focus-visible:(ring ring-violet-400 ring-opacity-75);
+}
+
+button {
+  @apply p-2 flex items-center gap-1 hover:(bg-violet-100) active:(bg-violet-200);
+}
+
+a {
+  @apply hover:(underline);
+}

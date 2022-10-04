@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import ChevronLeftRounded from '~icons/material-symbols/chevron-left-rounded.jsx'
+import ChevronLeftRounded from '~icons/material-symbols/chevron-left-rounded'
 
 export const CustomDisclosure = () => {
   return (

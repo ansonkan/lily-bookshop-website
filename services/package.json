@@ -2,8 +2,11 @@
   "name": "@lily-bookshop-website/services",
   "version": "0.0.0",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
+    "@lily-bookshop-website/schema": "1.0.0",
     "aws-sdk": "2.1223.0",
     "mongodb": "4.10.0"
   },

@@ -4,3 +4,6 @@ node_modules
 # sst
 .sst
 .build
+
+# next.js
+.next

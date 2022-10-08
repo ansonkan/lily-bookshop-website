@@ -14,7 +14,7 @@ export function MyStack({ stack }: StackContext) {
       'POST   /books': 'books/create.handler',
       'GET    /books/search': 'books/search.handler',
       'GET    /books/{id}': 'books/get.handler',
-      'PUT    /books/{id}': 'books/update.handler',
+      'PATCH  /books/{id}': 'books/update.handler',
       'DELETE /books/{id}': 'books/delete.handler',
     },
   })

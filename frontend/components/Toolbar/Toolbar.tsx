@@ -11,13 +11,13 @@ export const Toolbar = (): JSX.Element => {
 
   return (
     <div
-      className="sticky"
-      p="x-8 y-4 md:(x-16 y-8)"
+      className="sticky toolbar-spacing top-0"
       display="flex gap-4"
       items="center"
       justify="between"
       border="b-1 b-dark"
-      backdrop="blur"
+      z="50"
+      backdrop="filter blur"
     >
       {mode === 'normal' && (
         <>
@@ -41,11 +41,12 @@ export const Toolbar = (): JSX.Element => {
         <>
           <form action="/books/search" method="get" flex="grow">
             <input
-              placeholder="Search for books by a name or anything really"
+              placeholder="Search for books here"
               focus="outline-none"
               name="q"
               w="full"
               required
+              autoComplete="off"
             />
           </form>
 

@@ -6,10 +6,14 @@ import { Toolbar } from '@components'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <div className="root">
       <Toolbar />
 
-      <Component {...pageProps} />
+      <main className="page">
+        <Component {...pageProps} />
+      </main>
+
+      {/* Footer */}
     </div>
   )
 }

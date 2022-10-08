@@ -1,6 +1,5 @@
 a,
-button,
-.focusable {
+button {
   @apply rounded focus:(outline-none) focus-visible:(ring ring-violet-400 ring-opacity-75);
 }
 
@@ -10,4 +9,16 @@ button {
 
 a {
   @apply hover:(underline);
+}
+
+.root {
+  @apply min-h-screen;
+}
+
+.toolbar-spacing {
+  @apply px-8 py-2 md:(px-16 py-4);
+}
+
+.page {
+  @apply px-8 py-2 md:(px-16 py-4);
 }

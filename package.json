@@ -8,8 +8,9 @@
     "deploy": "sst deploy",
     "remove": "sst remove",
     "console": "sst console",
-    "typecheck": "tsc --noEmit",
+    "type-check": "tsc --noEmit",
     "test": "sst load-config -- vitest run",
+    "format-check": "prettier -c .",
     "format": "prettier -w ."
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
   "workspaces": [
     "services",
     "scripts",
-    "frontend"
+    "frontend",
+    "packages/*"
   ]
 }

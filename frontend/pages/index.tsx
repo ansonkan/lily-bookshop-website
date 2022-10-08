@@ -436,7 +436,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div display="grid" grid="cols-1 sm:cols-2 md:cols-3" gap="2 sm:4">
+      <div display="grid" grid="cols-1 sm:cols-2 md:cols-3" gap="4 sm:8">
         {books.map((data) => (
           <BookCard key={data._id} {...data} />
         ))}

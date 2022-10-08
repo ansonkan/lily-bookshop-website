@@ -11,13 +11,15 @@
     "type-check": "tsc --noEmit",
     "test": "sst load-config -- vitest run",
     "format-check": "prettier -c .",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "pre-push": "npm run format-check && npm run type-check --workspaces --if-present && npm run lint --workspaces --if-present"
   },
   "devDependencies": {
     "@serverless-stack/cli": "1.15.2",
     "@serverless-stack/resources": "1.15.2",
     "@tsconfig/node16": "1.0.3",
     "aws-cdk-lib": "2.39.1",
+    "lefthook": "1.1.1",
     "prettier": "2.7.1",
     "typescript": "4.8.3",
     "vitest": "0.23.4"

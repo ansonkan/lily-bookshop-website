@@ -1,10 +1,7 @@
 import { useState } from 'react'
-import Link from 'next/link'
-
-import MagnifyingGlassBold from '~icons/ph/magnifying-glass-bold'
-import XFill from '~icons/ph/x-fill'
 
 import { Mode } from './types'
+import { NormalMode, SearchMode } from './components'
 
 export const Toolbar = (): JSX.Element => {
   const [mode, setMode] = useState<Mode>('normal')
@@ -20,40 +17,11 @@ export const Toolbar = (): JSX.Element => {
       backdrop="filter blur"
     >
       {mode === 'normal' && (
-        <>
-          <h1 font="bold" text="2xl">
-            <Link href="/">
-              <a>Lily Bookshop</a>
-            </Link>
-          </h1>
-
-          <div display="flex" gap="1" items="center">
-            <button onClick={() => setMode('search')}>
-              <MagnifyingGlassBold />
-            </button>
-
-            {/* Locale switcher */}
-          </div>
-        </>
+        <NormalMode onSearchButtonClick={() => setMode('search')} />
       )}
 
       {mode === 'search' && (
-        <>
-          <form action="/books/search" method="get" flex="grow">
-            <input
-              placeholder="Search for books here"
-              focus="outline-none"
-              name="q"
-              w="full"
-              required
-              autoComplete="off"
-            />
-          </form>
-
-          <button onClick={() => setMode('normal')}>
-            <XFill />
-          </button>
-        </>
+        <SearchMode onCloseButtonClick={() => setMode('normal')} />
       )}
     </div>
   )

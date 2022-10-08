@@ -22,3 +22,11 @@ a {
 .page {
   @apply px-8 py-2 md:(px-16 py-4);
 }
+
+.footer {
+  @apply px-8 pt-4 pb-16 md:(px-16 pt-8 pb-32) flex flex-col md:(flex-row align-baseline) gap-4 bg-gray-800 text-white;
+
+  .title {
+    @apply font-bold text-xl mb-4 md:(mb-0 mr-4);
+  }
+}

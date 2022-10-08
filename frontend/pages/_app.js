@@ -23,6 +23,9 @@ function MyApp({ Component, pageProps }) {
         </main>
 
         {/* Footer */}
+        <div className="footer">
+          <div className="title">Lily Bookshop</div>
+        </div>
       </div>
     </>
   )

@@ -21,6 +21,7 @@ export function MyStack({ stack }: StackContext) {
 
   const site = new NextjsSite(stack, 'Site', {
     path: 'frontend',
+    nextBinPath: '../node_modules/.bin/next',
     environment: {
       API_URL: api.url,
     },

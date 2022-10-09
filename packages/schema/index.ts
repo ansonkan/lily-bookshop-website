@@ -1,6 +1,21 @@
-import { object, string, number, InferType } from 'yup'
+import { object, string, number, SchemaOf } from 'yup'
 
-export const bookSchema = object({
+export interface Book {
+  isbn13: string
+  isbn10: string
+  title: string
+  subtitle?: string | undefined
+  authors?: string | undefined
+  categories?: string | undefined
+  thumbnail?: string | undefined
+  description?: string | undefined
+  published_year?: string | undefined
+  average_rating?: number | undefined
+  num_pages?: number | undefined
+  ratings_count?: number | undefined
+}
+
+export const bookSchema: SchemaOf<Book> = object({
   isbn13: string().required(),
   isbn10: string().required(),
   title: string().required(),
@@ -15,4 +30,4 @@ export const bookSchema = object({
   ratings_count: number(),
 })
 
-export type Book = InferType<typeof bookSchema>
+export type BookDocument = Book & { _id: string }

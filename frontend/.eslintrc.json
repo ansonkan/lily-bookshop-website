@@ -15,6 +15,7 @@
     "react/no-unknown-property": "off",
     // For the type `NodeJS`
     "no-undef": "off",
-    "eqeqeq": "error"
+    "eqeqeq": "error",
+    "no-console": "warn"
   }
 }

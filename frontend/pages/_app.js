@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
 
-      <div className="root">
+      <div>
         <Toolbar />
 
         <main className="page">

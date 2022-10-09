@@ -1,10 +1,16 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { Mode } from './types'
 import { NormalMode, SearchMode } from './components'
 
 export const Toolbar = (): JSX.Element => {
-  const [mode, setMode] = useState<Mode>('normal')
+  const router = useRouter()
+  const searchQuery = router.query.q
+
+  const [mode, setMode] = useState<Mode>(
+    typeof searchQuery === 'string' ? 'search' : 'normal'
+  )
 
   return (
     <div
@@ -21,7 +27,10 @@ export const Toolbar = (): JSX.Element => {
       )}
 
       {mode === 'search' && (
-        <SearchMode onCloseButtonClick={() => setMode('normal')} />
+        <SearchMode
+          onCloseButtonClick={() => setMode('normal')}
+          initValue={typeof searchQuery === 'string' ? searchQuery : undefined}
+        />
       )}
     </div>
   )

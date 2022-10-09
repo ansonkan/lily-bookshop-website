@@ -13,6 +13,25 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
     }
   }
 
+  let limit = 10
+  let skip = 0
+
+  try {
+    if (event.queryStringParameters?.limit)
+      limit = Number.parseInt(event.queryStringParameters?.limit)
+
+    if (limit > 100) {
+      return {
+        statusCode: 400,
+      }
+    }
+
+    if (event.queryStringParameters?.skip)
+      skip = Number.parseInt(event.queryStringParameters?.skip)
+  } catch {
+    return { statusCode: 400 }
+  }
+
   const db = await connect('bookshop')
 
   const books = await db
@@ -29,8 +48,9 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
           },
         },
       },
+      { $skip: skip },
       {
-        $limit: 25,
+        $limit: limit,
       },
     ])
     .toArray()

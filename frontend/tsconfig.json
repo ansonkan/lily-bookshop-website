@@ -20,6 +20,9 @@
       "@components": ["components"],
       "@components/*": ["components/*"],
 
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+
       "@public": ["public"],
       "@public/*": ["public/*"],
 

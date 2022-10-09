@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import XFill from '~icons/ph/x-fill'
 import ArrowClockwise from '~icons/ph/arrow-clockwise'
+import PlayFill from '~icons/ph/play-fill'
 
 interface SearchModeProps {
   initValue?: string
@@ -21,7 +22,15 @@ export const SearchMode = ({
 
   return (
     <>
-      <form action="/books" method="get" flex="grow">
+      <form
+        action="/books"
+        method="get"
+        flex="grow row"
+        display="flex"
+        align="items-center"
+        justify="between"
+        gap="4"
+      >
         <input
           placeholder="Search for books here"
           focus="outline-none"
@@ -41,20 +50,24 @@ export const SearchMode = ({
           }}
           ref={inputRef}
         />
-      </form>
 
-      {value && (
-        <Link href="/books">
-          <button
-            onClick={() => {
-              setValue('')
-              inputRef.current?.focus()
-            }}
-          >
-            <ArrowClockwise />
-          </button>
-        </Link>
-      )}
+        {value && (
+          <Link href="/books">
+            <button
+              onClick={() => {
+                setValue('')
+                inputRef.current?.focus()
+              }}
+            >
+              <ArrowClockwise />
+            </button>
+          </Link>
+        )}
+
+        <button type="submit" disabled={!value}>
+          <PlayFill />
+        </button>
+      </form>
 
       <button onClick={() => onCloseButtonClick?.()}>
         <XFill />

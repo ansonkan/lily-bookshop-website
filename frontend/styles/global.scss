@@ -7,6 +7,10 @@ button {
   @apply p-2 flex items-center gap-1 hover:(bg-violet-100) active:(bg-violet-200);
 }
 
+button:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
 a {
   @apply hover:(underline);
 }

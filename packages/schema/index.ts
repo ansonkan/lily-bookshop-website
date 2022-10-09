@@ -13,6 +13,7 @@ export interface Book {
   average_rating?: number | undefined
   num_pages?: number | undefined
   ratings_count?: number | undefined
+  searched_count?: number | undefined
 }
 
 export const bookSchema: SchemaOf<Book> = object({
@@ -28,6 +29,7 @@ export const bookSchema: SchemaOf<Book> = object({
   average_rating: number(),
   num_pages: number(),
   ratings_count: number(),
+  searched_count: number(),
 })
 
 export type BookDocument = Book & { _id: string }

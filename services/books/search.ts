@@ -1,4 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import { ObjectId } from 'mongodb'
 
 import { connect } from '../utils'
 
@@ -54,6 +55,19 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
       },
     ])
     .toArray()
+
+  try {
+    const searchedIds = books.map((b) => new ObjectId(b._id))
+
+    await db
+      .collection('books')
+      .updateMany(
+        { _id: { $in: searchedIds } },
+        { $inc: { searched_count: 1 } }
+      )
+  } catch {
+    // silence this since is optional
+  }
 
   return {
     statusCode: 200,

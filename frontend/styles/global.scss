@@ -1,0 +1,32 @@
+a,
+button {
+  @apply rounded focus:(outline-none) focus-visible:(ring ring-violet-400 ring-opacity-75);
+}
+
+button {
+  @apply p-2 flex items-center gap-1 hover:(bg-violet-100) active:(bg-violet-200);
+}
+
+button:disabled {
+  @apply cursor-not-allowed opacity-50;
+}
+
+a {
+  @apply hover:(underline);
+}
+
+.toolbar-spacing {
+  @apply px-8 py-2 md:(px-16 py-4);
+}
+
+.page {
+  @apply px-8 py-4 md:(px-16 py-8) min-h-screen max-w-7xl m-auto;
+}
+
+.footer {
+  @apply px-8 pt-4 pb-16 md:(px-16 pt-8 pb-32) flex flex-col md:(flex-row align-baseline) gap-4 bg-gray-800 text-white;
+
+  .title {
+    @apply font-bold text-xl mb-4 md:(mb-0 mr-4);
+  }
+}

@@ -14,8 +14,21 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["unplugin-icons/types/react"]
+    "types": ["unplugin-icons/types/react"],
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+
+      "@public": ["public"],
+      "@public/*": ["public/*"],
+
+      "@styles/*": ["styles/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.js", "**/*.tsx", "**/*.jsx"],
   "exclude": ["node_modules"]
 }

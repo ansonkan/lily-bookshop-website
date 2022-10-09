@@ -1,3 +1,21 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    // For the `attributify` mode of Windicss
+    "react/no-unknown-property": "off",
+    // For the type `NodeJS`
+    "no-undef": "off",
+    "eqeqeq": "error",
+    "no-console": "warn"
+  }
 }

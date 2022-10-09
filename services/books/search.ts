@@ -1,4 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda'
+import { ObjectId } from 'mongodb'
 
 import { connect } from '../utils'
 
@@ -11,6 +12,25 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
     return {
       statusCode: 400,
     }
+  }
+
+  let limit = 10
+  let skip = 0
+
+  try {
+    if (event.queryStringParameters?.limit)
+      limit = Number.parseInt(event.queryStringParameters?.limit)
+
+    if (limit > 100) {
+      return {
+        statusCode: 400,
+      }
+    }
+
+    if (event.queryStringParameters?.skip)
+      skip = Number.parseInt(event.queryStringParameters?.skip)
+  } catch {
+    return { statusCode: 400 }
   }
 
   const db = await connect('bookshop')
@@ -29,11 +49,25 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
           },
         },
       },
+      { $skip: skip },
       {
-        $limit: 25,
+        $limit: limit,
       },
     ])
     .toArray()
+
+  try {
+    const searchedIds = books.map((b) => new ObjectId(b._id))
+
+    await db
+      .collection('books')
+      .updateMany(
+        { _id: { $in: searchedIds } },
+        { $inc: { searched_count: 1 } }
+      )
+  } catch {
+    // silence this since is optional
+  }
 
   return {
     statusCode: 200,

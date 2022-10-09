@@ -14,13 +14,14 @@ export function MyStack({ stack }: StackContext) {
       'POST   /books': 'books/create.handler',
       'GET    /books/search': 'books/search.handler',
       'GET    /books/{id}': 'books/get.handler',
-      'PUT    /books/{id}': 'books/update.handler',
+      'PATCH  /books/{id}': 'books/update.handler',
       'DELETE /books/{id}': 'books/delete.handler',
     },
   })
 
   const site = new NextjsSite(stack, 'Site', {
     path: 'frontend',
+    nextBinPath: '../node_modules/.bin/next',
     environment: {
       API_URL: api.url,
     },

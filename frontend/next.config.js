@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const WindiCSSWebpackPlugin = require('windicss-webpack-plugin')
 const UnpluginIconsPlugin = require('unplugin-icons/webpack')
 
@@ -12,6 +13,7 @@ const nextConfig = {
       UnpluginIconsPlugin({
         compiler: 'jsx',
         jsx: 'react',
+        extension: 'jsx',
       })
     )
 

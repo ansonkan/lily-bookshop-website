@@ -1,7 +1,8 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import type { BookDocument } from '@lily-bookshop-website/schema'
 
-import ImageFill from '~icons/ph/image-fill'
+import Head from 'next/head'
+import ImageFill from '~icons/ph/image-fill.jsx'
 
 import { BookCard, Breadcrumbs, Data } from '@components'
 
@@ -29,6 +30,11 @@ const BookPage: NextPage<BookPageProps> = ({
 }) => {
   return (
     <div display="flex" flex="col" gap="8">
+      <Head>
+        <title>{title} | Lily Bookshop</title>
+        <meta name="description" content={`"Lily Bookshop, ${title}"`} />
+      </Head>
+
       <Breadcrumbs />
 
       <div display="flex" flex="row" gap="4 sm:8">

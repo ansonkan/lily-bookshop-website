@@ -1,10 +1,17 @@
 import type { NextPage } from 'next'
 
+import Head from 'next/head'
+
 const Custom404Page: NextPage = () => {
   return (
-    <main>
+    <div>
+      <Head>
+        <title>404 | Lily Bookshop</title>
+        <meta name="description" content="Lily Bookshop, 404, Page Not Found" />
+      </Head>
+
       <h1>404 - Page Not Found</h1>
-    </main>
+    </div>
   )
 }
 

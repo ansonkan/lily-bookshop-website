@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import XFill from '~icons/ph/x-fill'
-import ArrowClockwise from '~icons/ph/arrow-clockwise'
-import PlayFill from '~icons/ph/play-fill'
+import XFill from '~icons/ph/x-fill.jsx'
+import ArrowClockwise from '~icons/ph/arrow-clockwise.jsx'
+import PlayFill from '~icons/ph/play-fill.jsx'
 
 interface SearchModeProps {
   initValue?: string
@@ -14,6 +14,7 @@ export const SearchMode = ({
   onCloseButtonClick,
 }: SearchModeProps): JSX.Element => {
   const inputRef = useRef<HTMLInputElement>(null)
+  const submitRef = useRef<HTMLButtonElement>(null)
   const [value, setValue] = useState(initValue ?? '')
 
   useEffect(() => {
@@ -44,6 +45,11 @@ export const SearchMode = ({
             setValue(event.target.value)
           }}
           onKeyDown={(event) => {
+            if (event.code === 'Enter') {
+              event.preventDefault()
+              submitRef.current?.click()
+            }
+
             if (event.code === 'Escape') {
               onCloseButtonClick?.()
             }
@@ -64,7 +70,7 @@ export const SearchMode = ({
           </Link>
         )}
 
-        <button type="submit" disabled={!value}>
+        <button type="submit" disabled={!value} ref={submitRef}>
           <PlayFill />
         </button>
       </form>

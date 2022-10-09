@@ -1,8 +1,9 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import type { BookDocument } from '@lily-bookshop-website/schema'
 
+import Head from 'next/head'
 import Link from 'next/link'
-import TagChevron from '~icons/ph/tag-chevron'
+import TagChevron from '~icons/ph/tag-chevron.jsx'
 
 import { BookCard, Breadcrumbs } from '@components'
 import { usePagingLinks } from '@hooks'
@@ -16,6 +17,11 @@ const BooksPage: NextPage<BooksPageProps> = ({ books }) => {
 
   return (
     <div display="flex" flex="col" gap="8">
+      <Head>
+        <title>Book list | Lily Bookshop</title>
+        <meta name="description" content="Lily Bookshop, book list" />
+      </Head>
+
       <Breadcrumbs />
 
       <div display="grid" grid="cols-1" gap="4 sm:8">
@@ -34,7 +40,8 @@ const BooksPage: NextPage<BooksPageProps> = ({ books }) => {
           </Link>
         )}
 
-        {nextHref && (
+        {/* BE should return a total count for pagination */}
+        {books.length === 10 && nextHref && (
           <Link href={nextHref}>
             <a display="flex" align="items-center" gap="2">
               Next

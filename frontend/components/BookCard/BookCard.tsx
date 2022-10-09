@@ -1,7 +1,7 @@
 import type { BookDocument } from '@lily-bookshop-website/schema'
 
 import Link from 'next/link'
-import ImageFill from '~icons/ph/image-fill'
+import ImageFill from '~icons/ph/image-fill.jsx'
 
 import { Data } from '@components/Data'
 

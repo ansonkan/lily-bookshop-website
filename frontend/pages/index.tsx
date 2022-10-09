@@ -2,8 +2,8 @@ import type { NextPage, GetServerSideProps } from 'next'
 import type { BookDocument } from '@lily-bookshop-website/schema'
 
 import Head from 'next/head'
-import PlayFill from '~icons/ph/play-fill'
-import SmileyFill from '~icons/ph/smiley-fill'
+import PlayFill from '~icons/ph/play-fill.jsx'
+import SmileyFill from '~icons/ph/smiley-fill.jsx'
 
 import { BookCard } from '@components'
 
@@ -23,7 +23,6 @@ const HomePage: NextPage<HomePageProps> = ({
       <Head>
         <title>Lily Bookshop</title>
         <meta name="description" content="Lily Bookshop" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <div display="flex" flex="col" gap="4">
@@ -87,6 +86,11 @@ const HomePage: NextPage<HomePageProps> = ({
             universal ID for a book. There is likely a free service for ISBN
             lookup. If so, all we need to do is to get a barcode scanner, then
             scan all the books)
+          </li>
+          <li>Improve searching, such as support tags or multiple keywords</li>
+          <li>
+            Improve &quot;You might be interested&quot; because now it might
+            suggests the same book
           </li>
         </ul>
 

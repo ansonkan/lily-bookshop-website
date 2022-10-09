@@ -13,6 +13,7 @@ const nextConfig = {
       UnpluginIconsPlugin({
         compiler: 'jsx',
         jsx: 'react',
+        extension: 'jsx',
       })
     )
 

@@ -1,4 +1,4 @@
-import Minus from '~icons/ph/minus'
+import Minus from '~icons/ph/minus.jsx'
 
 interface DataProps {
   label: string

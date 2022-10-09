@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ArrowRight from '~icons/ph/arrow-right'
+import ArrowRight from '~icons/ph/arrow-right.jsx'
 
 const capitalize = (str: string): string => {
   return str

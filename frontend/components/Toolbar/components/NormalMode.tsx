@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import MagnifyingGlassBold from '~icons/ph/magnifying-glass-bold'
+import MagnifyingGlassBold from '~icons/ph/magnifying-glass-bold.jsx'
 
 interface NormalModeProps {
   onSearchButtonClick?: () => void

@@ -37,7 +37,7 @@ const BookPage: NextPage<BookPageProps> = ({
 
       <Breadcrumbs />
 
-      <div display="flex" flex="row" gap="4 sm:8">
+      <div display="flex" flex="col-reverse sm:row" gap="4 sm:8">
         <div display="flex" flex="col grow" gap="4 sm:8">
           <div>
             <h1 font="bold" text="2xl break-words">

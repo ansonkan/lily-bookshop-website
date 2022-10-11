@@ -31,13 +31,13 @@ const BookPage: NextPage<BookPageProps> = ({
   return (
     <div display="flex" flex="col" gap="8">
       <Head>
-        <title>{title} | Lily Bookshop</title>
-        <meta name="description" content={`"Lily Bookshop, ${title}"`} />
+        <title>{`${title} | Lily Bookshop`}</title>
+        <meta name="description" content={`Lily Bookshop, ${title}`} />
       </Head>
 
       <Breadcrumbs />
 
-      <div display="flex" flex="row" gap="4 sm:8">
+      <div display="flex" flex="col-reverse sm:row" gap="4 sm:8">
         <div display="flex" flex="col grow" gap="4 sm:8">
           <div>
             <h1 font="bold" text="2xl break-words">
@@ -120,9 +120,20 @@ export const getServerSideProps: GetServerSideProps<
   const book = await result.json()
   let relatedBooks = []
 
-  if (book.categories) {
+  const keywords = [book.categories, ...book.title.split(' ')].filter(
+    (k) => !!k
+  )
+
+  if (keywords.length) {
+    /**
+     * Maybe better to have a separated endpoint dedicated for book recommendations
+     * because this `search` endpoint could be more complicated as search options grow
+     * that doesn't necessarily gives reasonable book recommendations based on given book
+     */
     const searchResult = await fetch(
-      `${apiUrl}/books/search?q=${book.categories}&limit=3`
+      `${apiUrl}/books/search?q=${keywords.join(',')}&limit=3&excluded_ids=${
+        book._id
+      }`
     )
 
     relatedBooks = await searchResult.json()

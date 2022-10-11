@@ -6,32 +6,35 @@ import { connect } from '../utils'
 export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
   context.callbackWaitsForEmptyEventLoop = false
 
-  const query = event.queryStringParameters?.q
-
-  if (!query) {
+  if (!event.queryStringParameters) {
     return {
       statusCode: 400,
     }
   }
 
-  let limit = 10
-  let skip = 0
+  const { q, excluded_ids, limit, skip } = event.queryStringParameters
+
+  if (!q) {
+    return {
+      statusCode: 400,
+    }
+  }
+
+  const _excludedIds = excluded_ids ? excluded_ids.split(',') : []
+  let _limit = 10
+  let _skip = 0
 
   try {
-    if (event.queryStringParameters?.limit)
-      limit = Number.parseInt(event.queryStringParameters?.limit)
+    if (limit) _limit = Number.parseInt(limit)
 
-    if (limit > 100) {
-      return {
-        statusCode: 400,
-      }
-    }
+    if (_limit > 100) throw new Error('400')
 
-    if (event.queryStringParameters?.skip)
-      skip = Number.parseInt(event.queryStringParameters?.skip)
+    if (skip) _skip = Number.parseInt(skip)
   } catch {
     return { statusCode: 400 }
   }
+
+  console.log(q.split(','), _excludedIds)
 
   const db = await connect('bookshop')
 
@@ -41,17 +44,35 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
       {
         $search: {
           index: 'default',
-          text: {
-            query,
-            path: {
-              wildcard: '*',
-            },
+          compound: {
+            should: [
+              {
+                text: {
+                  query: q.split(','),
+                  path: [
+                    'isbn13',
+                    'isbn10',
+                    'title',
+                    'subtitle',
+                    'authors',
+                    'categories',
+                    'description',
+                  ],
+                  fuzzy: {},
+                },
+              },
+            ],
           },
         },
       },
-      { $skip: skip },
       {
-        $limit: limit,
+        $match: {
+          _id: { $not: { $in: _excludedIds.map((id) => new ObjectId(id)) } },
+        },
+      },
+      { $skip: _skip },
+      {
+        $limit: _limit,
       },
     ])
     .toArray()
@@ -59,12 +80,10 @@ export const handler: APIGatewayProxyHandlerV2 = async (event, context) => {
   try {
     const searchedIds = books.map((b) => new ObjectId(b._id))
 
-    await db
-      .collection('books')
-      .updateMany(
-        { _id: { $in: searchedIds } },
-        { $inc: { searched_count: 1 } }
-      )
+    db.collection('books').updateMany(
+      { _id: { $in: searchedIds } },
+      { $inc: { searched_count: 1 } }
+    )
   } catch {
     // silence this since is optional
   }

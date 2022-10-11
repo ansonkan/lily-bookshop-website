@@ -21,6 +21,7 @@ export const Toolbar = (): JSX.Element => {
       border="b-1 b-dark"
       z="50"
       backdrop="filter blur"
+      bg="light-100 opacity-50"
     >
       {mode === 'normal' && (
         <NormalMode onSearchButtonClick={() => setMode('search')} />

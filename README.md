@@ -1,3 +1,5 @@
+This is a failed attempt of a book store website for a local book store. Also, this serves as my SST practice.
+
 # Lily Bookshop
 
 ## TODO
